@@ -1,0 +1,25 @@
+# --- VISUAL STUDIO / .NET (Backend) ---
+[Bb]in/
+[Oo]bj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# --- NODE / VUE.JS (Frontend) ---
+node_modules/
+dist/
+dist-ssr/
+*.local
+.eslintcache
+.stylelintcache
+.prettiercache
+
+# --- SYSTÈME & LOGS ---
+.DS_Store
+Thumbs.db
+*.log
+.env
+.env.*.local
