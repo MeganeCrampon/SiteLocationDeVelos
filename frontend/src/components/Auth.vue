@@ -47,7 +47,7 @@ const handleRegister = async () => {
             Mdp: mdp.value
             }
 
-    const reponse = await axios.post('http://localhost:5000/api/auth/register', donnees)
+    const reponse = await axios.post('http://localhost:5000/api/register', donnees)
 
     alert("Bravo ! " + reponse.data.message)
     
@@ -57,11 +57,19 @@ const handleRegister = async () => {
     }
 }
 
-const handleLogin = async () => {
+const handleAuth = async () => {
     try {
         const donnees = {
-
+          Email: email.value,
+          Mdp: mdp.value
         }
+    const reponse = await axios.post('http://localhost:5000/api/auth', donnees)
+
+    alert("Connexion réussie.")
+
+    } catch (error) {
+        console.error("Erreur détaillée :", error)
+        alert("Erreur lors de la connexion.")
     }
 }
 </script>
