@@ -13,10 +13,11 @@ namespace SiteLocaVelos.Controllers
 
         [HttpPost]
         public IActionResult Post([FromBody] Utilisateur utilisateur)
-        {
-            string mdpHache = Bcrypt.Net.BCrypt.HashPassword(utilisateur.Mdp);
-            var newMdp = mdpHache
+        {   
             if (utilisateur == null) return BadRequest("Erreur");
+            string mdpHache = BCrypt.Net.BCrypt.HashPassword(utilisateur.Mdp);
+            utilisateur.Mdp = mdpHache;
+
             ListeUtilisateurs.Add(utilisateur);
             return Ok(new { message = "Utilisateur bien enregistré !" });
         }
