@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SiteLocaVelos.Models;
 using System.Linq;
+using BCrypt;
 
 namespace SiteLocaVelos.Controllers
 {
@@ -19,6 +20,7 @@ namespace SiteLocaVelos.Controllers
                 return Unauthorized(new { message = "Cet email n'existe pas."});
             }
             if (user.Mdp != loginInfo.Mdp)
+                // hashing 
             {
                 return Unauthorized(new { message = "Mot de passe incorect:"});
             }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SiteLocaVelos.Models;
 using System.Linq;
+using BCrypt.Net;
 
 namespace SiteLocaVelos.Controllers
 {
@@ -11,10 +12,12 @@ namespace SiteLocaVelos.Controllers
         private static readonly List<Utilisateur> ListeUtilisateurs = new List<Utilisateur>();
 
         [HttpPost]
-        public IActionResult Post([FromBody] Utilisateur nouveau)
+        public IActionResult Post([FromBody] Utilisateur utilisateur)
         {
-            if (nouveau == null) return BadRequest("Erreur");
-            ListeUtilisateurs.Add(nouveau);
+            string mdpHache = Bcrypt.Net.BCrypt.HashPassword(utilisateur.Mdp);
+            var newMdp = mdpHache
+            if (utilisateur == null) return BadRequest("Erreur");
+            ListeUtilisateurs.Add(utilisateur);
             return Ok(new { message = "Utilisateur bien enregistré !" });
         }
     }
