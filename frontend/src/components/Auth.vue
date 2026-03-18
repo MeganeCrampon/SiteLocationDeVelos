@@ -63,7 +63,7 @@ const handleAuth = async () => {
           Mdp: mdp.value
         }
     const reponse = await axios.post('http://localhost:5000/api/auth', donnees)
-        localStorage.setItem('token'.reponse.data.token);
+        localStorage.setItem('token'.reponse.data.token); // PAS COMPRIS OU ON LE MET
 
     alert("Connexion réussie. Token stocké.")
 
