@@ -20,7 +20,7 @@
           {{ isLogin ? "Se connecter" : "Créer un compte" }}
         </v-btn>
       </v-form>
-      
+
       <v-btn variant="text" block @click="isLogin = !isLogin" class="mt-4">
         {{ isLogin ? "Pas de compte ? Inscrivez vous" : "Déjà inscrit ? Connectez vous" }}
       </v-btn> 
@@ -63,8 +63,9 @@ const handleAuth = async () => {
           Mdp: mdp.value
         }
     const reponse = await axios.post('http://localhost:5000/api/auth', donnees)
+        localStorage.setItem('token'.reponse.data.token);
 
-    alert("Connexion réussie.")
+    alert("Connexion réussie. Token stocké.")
 
     } catch (error) {
         console.error("Erreur détaillée :", error)
