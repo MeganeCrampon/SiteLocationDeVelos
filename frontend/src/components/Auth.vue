@@ -1,32 +1,30 @@
 <template>
   <v-container>
     <v-card class="pa-4" max-width="400">
-      <v-card-title>Inscription</v-card-title>
+      <v-card-title>{{ isLogin ? 'Connexion' : 'Inscription' }}</v-card-title>
       
-      <v-form @submit.prevent="handleRegister">
+      <v-form @submit.prevent="submitForm">
+
         <v-text-field
-          v-model="email"
-          label="Email"
-          type="email"
-          required
-        ></v-text-field>
-         
-        <v-text-field
+          v-if="isLogin"
           v-model="nom"
           label="Nom"
-          type="name"
           required
         ></v-text-field>
 
-        <v-text-field
-          v-model="mdp"
-          label="Mot de passe"
-          type="password"
-          required
-        ></v-text-field>
+        <v-text-field v-model="email" label="Email" type="email" required></v-text-field>  
+        <v-text-field v-model="nom" label="Nom" type="name" required></v-text-field>
+        <v-text-field v-model="mdp" label="Mot de passe" type="password" required></v-text-field>
 
-        <v-btn type="submit" color="primary" block>Valider</v-btn>
+        <v-btn type="submit" color="primary" block>
+          {{ isLogin ? "Se connecter" : "Créer un compte" }}
+        </v-btn>
       </v-form>
+      
+      <v-btn variant="text" block @click="isLogin = !isLogin" class="mt-4">
+        {{ isLogin ? "Pas de compte ? Inscrivez vous" : "Déjà inscrit ? Connectez vous" }}
+      </v-btn> 
+
     </v-card>
   </v-container>
 </template>
@@ -35,6 +33,7 @@
 import { ref } from 'vue'
 import axios from 'axios'
 
+const isLogin = ref(true)
 const nom = ref('')
 const email = ref('')
 const mdp = ref('')
@@ -71,5 +70,13 @@ const handleAuth = async () => {
         console.error("Erreur détaillée :", error)
         alert("Erreur lors de la connexion.")
     }
+}
+
+const submitForm = () => {
+  if (isLogin.value){
+    handleAuth()
+  } else {
+    handleRegister
+  }
 }
 </script>
