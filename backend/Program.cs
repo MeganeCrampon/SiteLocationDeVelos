@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using SQLitePCL;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,6 +31,9 @@ builder.Services.AddCors(options => {
         policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
+
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlite("Data Source=locavelos.cs"));
 
 var app = builder.Build();
 

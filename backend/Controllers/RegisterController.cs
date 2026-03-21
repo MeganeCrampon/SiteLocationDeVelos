@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using SiteLocaVelos.Models;
 using System.Linq;
 using BCrypt.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SiteLocaVelos.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class RegisterController : ControllerBase
     {
         private static readonly List<Utilisateur> ListeUtilisateurs = new List<Utilisateur>();

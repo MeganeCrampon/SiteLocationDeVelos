@@ -6,11 +6,13 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SiteLocaVelos.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class AuthController : ControllerBase
     {
         private readonly IConfiguration _configuration;
